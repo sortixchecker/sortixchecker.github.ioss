@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Tonixker Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+<div class="bg-image"></div>
+
+<div class="login-card">
+  <!-- Título -->
+  <h1 class="title">TonixCloud</h1>
+
+  <!-- Mensaje de bienvenida / estado -->
+  <p id="welcome"></p>
+  <div id="locked" class="hidden">Account not activated</div>
+
+  <!-- Panel de programas -->
+  <div id="content" class="form-container hidden">
+
+    <h3 style="margin-bottom:12px;">Download Tools</h3>
+
+    <div class="program">
+      <span>LexerHotmail</span>
+      <button class="small-button" onclick="download('LexerHotmail.rar')">Download</button>
+    </div>
+
+    <div class="program">
+      <span>Soon</span>
+      <button class="small-button">Download</button>
+    </div>
+
+    <div class="program">
+      <span>Soon</span>
+      <button class="small-button">Download</button>
+    </div>
+
+  </div>
+
+  <!-- Logout -->
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script type="module">
+import { getUsers } from "./app.js";
+
+async function loadDashboard(){
+  const uid = localStorage.getItem("uid");
+  if(!uid) return location="index.html";
+
+  const users = await getUsers();
+  const u = users.find(x=>x.id==uid);
+  if(!u) return location="index.html";
+
+  const welcome = document.getElementById("welcome");
+  const content = document.getElementById("content");
+  const locked = document.getElementById("locked");
+
+  if(u.active){
+    welcome.innerText = `Welcome: ${u.username}`;
+    content.classList.remove("hidden");
+    locked.classList.add("hidden"); // ocultamos el mensaje de inactivo
+  } else {
+    welcome.innerText = "";
+    locked.classList.remove("hidden");
+    content.classList.add("hidden");
+  }
+}
+
+function logout(){
+  localStorage.removeItem("uid");
+  location="index.html";
+}
+
+// Función para descargar automáticamente
+function download(fileName){
+  const filePath = `files/${fileName}`; // carpeta donde guardas los .rar
+  const link = document.createElement('a');
+  link.href = filePath;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+window.logout = logout;
+window.download = download;
+
+loadDashboard();
+</script>
+
+</body>
+</html>
