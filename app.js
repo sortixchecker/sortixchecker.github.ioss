@@ -1,6 +1,6 @@
 // CONFIG
-const BIN_ID = "69855790ae596e708f14d08f";
-const MASTER_KEY = "$2a$10$nDY1hGl/RVBez7XxU4Mfc.XpLidiwhxE0WzYZbAF/lHqJ4MykGmDG";
+const BIN_ID = "699289be43b1c97be9824f7f";
+const MASTER_KEY = "$2a$10$BBRC77TElZJiVK11kI2LHeyCk.f1vAvTllgJEdYCGcOLlqPv51ICG";
 const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
 // ======================
