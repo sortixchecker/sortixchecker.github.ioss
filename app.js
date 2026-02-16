@@ -1,5 +1,5 @@
 // CONFIG
-const BIN_ID = "6987426a03998b11ea8dca12";
+const BIN_ID = "69929c33d0ea881f40bdd66a";
 const MASTER_KEY = "$2a$10$BBRC77TElZJiVK11kI2LHeyCk.f1vAvTllgJEdYCGcOLlqPv51ICG";
 const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
@@ -104,6 +104,7 @@ export function download(fileName) {
   link.click();
   document.body.removeChild(link);
 }
+
 
 
 
